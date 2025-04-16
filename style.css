@@ -10,50 +10,30 @@ body {
 
 .container {
     text-align: center;
-    position: relative;
 }
 
 h1 {
     color: #ffffff;
     margin-bottom: 20px;
-    font-size: 50px;
-}
-
-/* Un solo checkbox para controlar el estado */
-#flip-trigger {
-    display: none;
 }
 
 .coin-container {
     perspective: 1000px;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 20px;
-    position: relative;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .coin {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
     transform-style: preserve-3d;
     transition: transform 0.1s;
 }
 
 .coin:hover {
     transform: scale(1.05);
-    cursor: pointer;
-}
-
-.coin-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-    cursor: pointer;
-    border-radius: 50%;
 }
 
 .coin-face {
@@ -92,9 +72,7 @@ h1 {
     transform-style: preserve-3d;
 }
 
-/* Botón de lanzar */
-.flip-button {
-    display: inline-block;
+button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #2c98e7;
@@ -105,22 +83,11 @@ h1 {
     transition: background-color 0.3s;
 }
 
-.flip-button:hover {
-    background-color: #2c98e7;
+button:hover {
+    background-color: #2C98E7FF;
 }
 
-/* Estado inicial - moneda estática */
-.coin {
-    animation: none;
-}
-
-/* Cuando el checkbox está marcado, inicia la animación */
-#flip-trigger:checked ~ .coin-container .coin {
-    animation: flip 3s forwards;
-}
-
-/* Animación básica de giro */
-@keyframes flip {
+@keyframes flip-heads {
     0% {
         transform: rotateY(0) rotateX(0);
     }
@@ -135,59 +102,28 @@ h1 {
     }
 }
 
-/* Resultados */
+@keyframes flip-tails {
+    0% {
+        transform: rotateY(0) rotateX(0);
+    }
+    40% {
+        transform: rotateY(1080deg) rotateX(1080deg);
+    }
+    70% {
+        transform: rotateY(1800deg) rotateX(1800deg);
+    }
+    100% {
+        transform: rotateY(2160deg) rotateX(0deg);
+    }
+}
+
 .result {
     font-size: 24px;
     font-weight: bold;
     margin-top: 20px;
-    height: 30px;
-    opacity: 0;
+    min-height: 30px;
 }
 
-/* Mostramos el resultado después de 3 segundos */
-#flip-trigger:checked ~ .result {
-    animation: show-result 3.5s forwards;
-}
-
-@keyframes show-result {
-    0%, 80% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Desactivamos los clics durante la animación */
-#flip-trigger:checked ~ label {
+.flipping {
     pointer-events: none;
-}
-
-/* Reactivamos los clics después de la animación */
-#flip-trigger:checked ~ label {
-    animation: re-enable-clicks 3.1s forwards;
-}
-
-@keyframes re-enable-clicks {
-    0%, 99% {
-        pointer-events: none;
-    }
-    100% {
-        pointer-events: auto;
-    }
-}
-
-/* Desmarcar automáticamente el checkbox después de la animación */
-#flip-trigger:checked {
-    animation: uncheck 3.1s forwards;
-}
-
-@keyframes uncheck {
-    0%, 99.9% {
-        /* El checkbox permanece marcado durante la animación */
-    }
-    100% {
-        /* Intentamos desmarcar el checkbox al final de la animación */
-        /* Nota: Esto no funciona realmente en CSS puro, pero es un intento */
-    }
 }

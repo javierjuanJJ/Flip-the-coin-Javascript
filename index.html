@@ -8,21 +8,16 @@
 <body>
 <div class="container">
     <h1>Flip the coin</h1>
-
-    <!-- Un solo checkbox para controlar el estado -->
-    <input type="checkbox" id="flip-trigger">
-
-    <div class="coin-container">
-        <div class="coin">
+    <div class="coin-container" id="coin-container">
+        <div id="coin" class="coin">
             <div class="coin-face heads">$</div>
             <div class="coin-face tails">I</div>
             <div class="coin-edge"></div>
-            <!-- La etiqueta dentro de la moneda para capturar clics -->
-            <label for="flip-trigger" class="coin-label"></label>
         </div>
     </div>
-    <!-- La etiqueta actúa como un botón -->
-    <label for="flip-trigger" class="flip-button">Random</label>
+    <button id="flip-button">Random</button>
+    <div id="result" class="result"></div>
 </div>
+<script src="script.js"></script>
 </body>
 </html>
